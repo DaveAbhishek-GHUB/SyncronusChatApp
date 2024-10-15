@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import LoginPage from "../../components/LoginPage";
 import LoginBG from "../../assets/login2.png";
 import Signup from "../../components/SignupPage";
 
+
 function AuthPage() {
+
   const [forLogin, setForLogin] = useState(true);
   const [forSignup, setForSignup] = useState(false);
 
@@ -25,10 +26,10 @@ function AuthPage() {
           <div className="form-wrapper w-full md:w-1/2 h-full p-4">
             <div className="form-heading-wrapper w-full mb-4">
               <div className="welcom-heading flex gap-5 justify-center">
-                <h1 className="text-2xl md:text-4xl mt-4 font-sans font-bold">
+                <h1 className="text-2xl md:text-4xl font-sans font-bold">
                   Welcome
                 </h1>
-                <span className="text-2xl md:text-4xl mt-4">✌️</span>
+                <span className="text-2xl md:text-4xl">✌️</span>
               </div>
               <div className="filltheform-heading w-full flex justify-center mt-5">
                 <p className="text-sm md:text-lg font-semibold text-center">
@@ -36,7 +37,7 @@ function AuthPage() {
                 </p>
               </div>
             </div>
-            <div className="form-container w-full mt-10">
+            <div className="form-container w-full">
               <div className="authSelector w-full flex justify-center gap-4 md:gap-10">
                 <button
                   onClick={setLogin}

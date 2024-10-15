@@ -1,28 +1,31 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../../src/store/slices/userSlice";
 
 function Signup() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({
     defaultValues: {
-      fullname: "",
+      first_name: "",
+      last_name: "",
       email: "",
+      contact_number: "",
+      profile_image: null,
       password: "",
-      confirmPassword: "",
     },
   });
 
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.user);
+
   const onSubmit = (SignupData) => {
-    console.log(SignupData);
+    dispatch(signupUser(SignupData));
   };
-
-  const password = watch("password");
-
   return (
     <>
       <div className="login">
@@ -31,16 +34,29 @@ function Signup() {
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="ForFullname">
+          <div className="Forfirst_name">
             <input
               className="border-black border-[1px] w-[35vw] mt-1 p-2 rounded-lg text-[1vw]"
               type="text"
-              id="Fullname"
-              placeholder="Enter Full Name"
-              {...register("fullname", { required: "Full Name Required!" })}
+              id="first_name"
+              placeholder="Enter First Name"
+              {...register("first_name", { required: "First Name Required!" })}
             />
             <p className="text-[1vw] text-red-500">
-              {errors.fullname?.message}
+              {errors.first_name?.message}
+            </p>
+          </div>
+
+          <div className="Forlast_name">
+            <input
+              className="border-black border-[1px] w-[35vw] mt-1 p-2 rounded-lg text-[1vw]"
+              type="text"
+              id="last_name"
+              placeholder="Enter Last Name"
+              {...register("last_name", { required: "Last Name Required!" })}
+            />
+            <p className="text-[1vw] text-red-500">
+              {errors.last_name?.message}
             </p>
           </div>
 
@@ -59,6 +75,37 @@ function Signup() {
               })}
             />
             <p className="text-[1vw] text-red-500">{errors.email?.message}</p>
+          </div>
+
+          <div className="Forcontact_number">
+            <input
+              className="border-black border-[1px] w-[35vw] mt-1 p-2 rounded-lg text-[1vw]"
+              type="tel"
+              id="contact_number"
+              placeholder="Enter Contact Number"
+              {...register("contact_number", {
+                required: "Contact Number Required!",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Invalid contact number",
+                },
+              })}
+            />
+            <p className="text-[1vw] text-red-500">
+              {errors.contact_number?.message}
+            </p>
+          </div>
+
+          <div className="Forprofile_image">
+            <input
+              className="border-black border-[1px] w-[35vw] mt-1 p-2 rounded-lg text-[1vw]"
+              type="file"
+              id="profile_image"
+              {...register("profile_image", { required: "Profile Picture Required!" })}
+            />
+            <p className="text-[1vw] text-red-500">
+              {errors.profile_image?.message}
+            </p>
           </div>
 
           <div className="ForPassword">
@@ -81,23 +128,6 @@ function Signup() {
             />
             <p className="text-[1vw] text-red-500">
               {errors.password?.message}
-            </p>
-          </div>
-
-          <div className="ForConfirmPassword">
-            <input
-              className="border-black border-[1px] w-[35vw] mt-1 p-2 rounded-lg text-[1vw]"
-              type="password"
-              id="ConfirmPassword"
-              placeholder="Confirm Password"
-              {...register("confirmPassword", {
-                required: "Confirm Password Required!",
-                validate: (value) =>
-                  value === password || "Passwords do not match",
-              })}
-            />
-            <p className="text-[1vw] text-red-500">
-              {errors.confirmPassword?.message}
             </p>
           </div>
 
