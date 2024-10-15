@@ -39,21 +39,6 @@ const userSlice = createSlice({
   reducers: {
     // not yet
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(signupUser.pending, (state) => {
-        state.loading = true; 
-        state.error = null;
-      })
-      .addCase(signupUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(signupUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-  },
 });
 
 // Export the reducer to be used in the store
