@@ -12,7 +12,7 @@ export const signupUser = createAsyncThunk(
       formData.append('profile_image', SignupData.profile_image[0]); 
       formData.append('password', SignupData.password);
 
-      const response = await fetch('http://172.29.48.1:3000/api/v1/user/signup', {
+      const response = await fetch('http://172.29.48.1:5000/api/v1/user/signup', {
         method: 'POST',
         body: formData,
       });
