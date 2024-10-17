@@ -21,7 +21,6 @@ function Signup() {
   });
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.user);
 
   const onSubmit = (SignupData) => {
     dispatch(signupUser(SignupData));

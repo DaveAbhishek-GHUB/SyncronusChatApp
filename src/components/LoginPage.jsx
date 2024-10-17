@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../store/slices/userSlice";
 
 function LoginPage() {
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -16,6 +21,7 @@ function LoginPage() {
 
   const onSubmit = (LoginData) => {
     console.log(LoginData);
+    dispatch(loginUser(LoginData));
   };
 
   return (
